@@ -1,0 +1,50 @@
+Page Bar
+	div id=alis-breadcrumbs
+User Dashboard Page
+	div id=page
+		span class=v-button-caption
+		
+Main Details Page (Create Application)
+	div id=flow/Step1
+		span class=v-button-caption
+		
+		
+Nav Bar Pages
+	div id=alis-menu-pages
+	
+Nav Bar (Rest)
+	div id=alis-menu
+		span class=v-menubar-menuitem
+			span class=v-menubar-menuitem-caption
+	
+	div class=v-menubar-popup
+		span class=v-menubar-menuitem
+			span class=v-menubar-menuitem-caption
+	div class=v-menubar-popup
+		span class=v-menubar-menuitem
+			span class=v-menubar-menuitem-caption
+			
+Alis Summary
+	div id=alis-summary
+		div id=summary/section_activityDescription
+		div id=summary/section_followUpOpeningDescription
+		div id=summary/section_followUpProcessDescription
+		div id=summary/section_followUpClosingDescription
+		
+User DB Button
+	div id=user.db.button
+
+Time Lable
+	div class=v-label v-label-alis-time-label alis-time-label v-label-undef-w
+
+Search
+	div id=alis-search
+		input id=alis-search-panel-text
+		span class=v-button-caption
+			$('span[class=v-button-caption]');
+			$('div[class$=alis-advanced-button]');
+			
+Login Page
+	DB_list
+		div id=VAADIN_COMBOBOX_OPTIONLIST
+	
