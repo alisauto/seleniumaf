@@ -10,7 +10,7 @@ public class Login extends BaseTest{
 
     @Test
     public static void loginToAlis() {
-
+        //test
         LoginPage page = new LoginPage();
         page.login("Clerk", "a", "tfl_6631_auto");
         try {
