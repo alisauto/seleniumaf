@@ -39,7 +39,7 @@ public class LoginPage extends Driver{
     WebElement dataBaseFilter = FindPageElements.findElement("v-filterselect-input");
     WebElement loginButton = FindPageElements.findElement("login.button");*/
 
-    public void login(String username, String password, String dataBase){
+    public void login(String username, String password, String dataBase) throws InterruptedException {
         WebElement usernameBox = findUserNameBox();
             ManageWebElements.setElementValue(usernameBox, username);
         WebElement passwordBox = findPasswordNameBox();
@@ -72,7 +72,6 @@ public class LoginPage extends Driver{
     private WebElement findLoginButton(){
         return element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login.button")));
     }
-
 
 
     public void waitForPageLoad( ) {

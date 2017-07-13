@@ -8,7 +8,7 @@ import alis.ui.pages.LoginPage;
 public class Login extends BaseTest{
 
     @Test
-    public static void loginToAlis() {
+    public static void loginToAlis() throws InterruptedException {
         //test
         LoginPage page = new LoginPage();
         page.login("Clerk", "a", "fnb_maint_test21");
