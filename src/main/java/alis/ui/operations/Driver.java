@@ -11,6 +11,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class Driver {
 
+    //Amid_13072017
     //private static Driver instance = null;
     private static WebDriver driver = null;
     private static String projectDir = System.getProperty("user.dir");
