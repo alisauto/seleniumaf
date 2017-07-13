@@ -4,15 +4,18 @@ import alis.ui.operations.Driver;
 import alis.ui.operations.FindPageElements;
 import alis.ui.operations.ManageWebElements;
 import alis.ui.operations.WaitForPageToLoad;
+import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.*;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -73,6 +76,7 @@ public class LoginPage extends Driver{
 
 
     public void waitForPageLoad( ) {
+        final int TIMEOUT = 10;
 
         JavascriptExecutor js =(JavascriptExecutor)driver;
         Object result = js.executeScript("return document['readyState'] ? 'complete' == document.readyState : true");
@@ -83,7 +87,30 @@ public class LoginPage extends Driver{
 
         }
 
-        System.out.println(result.toString());
+/**
+        List<WebElement> lodingsindicators = driver.findElements(By.className("v-loading-indicator"));
+        if(lodingsindicators.size()>0) {
+            final WebElement webElement = lodingsindicators.get(lodingsindicators.size() - 1);
+
+            WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
+            ExpectedCondition elementIsDisplayed = new ExpectedCondition<Boolean>() {
+                @NotNull
+                public Boolean apply(WebDriver arg0) {
+                    try {
+                        webElement.isDisplayed();
+                        return false;
+                    } catch (NoSuchElementException e) {
+                        return true;
+                    } catch (StaleElementReferenceException f) {
+                        return true;
+                    }
+                }
+            };
+            wait.until(elementIsDisplayed);
+
+        }
+*/
+        //System.out.println(result.toString());
 
         /**Object str = js.executeScript("return document.readyState;");
         while (!str.equals("complete")) {

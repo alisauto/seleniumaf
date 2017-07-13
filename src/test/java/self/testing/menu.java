@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import alis.ui.operations.Driver;
+import alis.ui.operations.Menus;
+import alis.ui.pages.LoginPage;
 import alis.ui.testing.Login;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
@@ -35,21 +37,35 @@ public class menu extends Login {
     @Test
     public void testMenu() throws Exception {
 
-         boolean iFoundMenue = false;
-
-         //String sMenuPath = "Client,New Person";
-
-          String sMenuPath = "Tools,Follow Up,Follow Up Query";
+         boolean ifoundmenue = false;
+        LoginPage page = new LoginPage();
 
 
+        Menus menu = new Menus();
+        menu.navigateTomenu("Tools,Follow Up,Follow Up Query");
+        page.waitForPageLoad();
+        Thread.sleep(1000);
+
+        menu.navigateTomenu("Policy,New application");
+        page.waitForPageLoad();
+        Thread.sleep(1000);
+
+
+
+        menu.navigateTomenu("client,new person");
+        page.waitForPageLoad();
+        Thread.sleep(1000);
+
+
+    /**     //String sMenuPath = "Client,New Person";
+        String sMenuPath = "Tools,Follow Up,Follow Up Query";
         String []arrMenu =  sMenuPath.split(",");
 
         WebDriver driver = Driver.getInstance();
-
         WebElement menuCol = driver.findElement(By.xpath(".//*[@id='alis-menu']"));
         List <WebElement> menuItem = menuCol.findElements(By.className("v-menubar-menuitem-caption"));
 
-        int aa = menuItem.size();
+        //int aa = menuItem.size();
         ///WebElement elm = menuItem.get(6);
 
         for ( WebElement item: menuItem) {
@@ -60,22 +76,18 @@ public class menu extends Login {
                 item.click();
 
                 driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
-                iFoundMenue = true;
+                ifoundmenue = true;
             }
         }
 
-
-        if(iFoundMenue) {
-
+        if(ifoundmenue) {
             for (int iItem = 1; iItem <= arrMenu.length - 1; iItem++) {
-                iFoundMenue = false;
+                ifoundmenue = false;
                 List<WebElement> submenus = driver.findElements(By.className("v-menubar-popup"));
                 WebElement menu = submenus.get(submenus.size()-1 );
+                List<WebElement> items = menu.findElements(By.className("v-menubar-menuitem-caption"));
 
-                //v-menubar-submenu v-menubar-submenu-spml-menubar
-                List<WebElement> iTems = menu.findElements(By.className("v-menubar-menuitem-caption"));
-
-                for (WebElement item : iTems) {
+                for (WebElement item : items) {
                     String val = item.getAttribute("innerText");
                     System.out.println(val);
 
@@ -83,34 +95,17 @@ public class menu extends Login {
                         System.out.println("found " + val);
                         item.click();
                         driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
-                        iFoundMenue = true;
+                        ifoundmenue = true;
                     }
 
                 }
-                //.
-
-                if(!iFoundMenue) break;
+                if(!ifoundmenue) break;
             }
 
+        }*/
+
+        if(ifoundmenue){
         }
-
-
-
-
-
-
-        if(iFoundMenue){
-
-
-            //.v-menubar-submenu.v-menubar-submenu-spml-menubar
-
-        }
-
-
-
-
-        //driver.findElement(By.cssSelector("span.v-menubar-menuitem-caption")).click();
-       // driver.findElement(By.cssSelector("div.v-menubar-submenu.v-menubar-submenu-spml-menubar > span.v-menubar-menuitem > span.v-menubar-menuitem-caption")).click();
     }
 
     @AfterClass(alwaysRun = true)
