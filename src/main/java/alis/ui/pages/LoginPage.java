@@ -3,12 +3,17 @@ package alis.ui.pages;
 import alis.ui.operations.Driver;
 import alis.ui.operations.FindPageElements;
 import alis.ui.operations.ManageWebElements;
+import alis.ui.operations.WaitForPageToLoad;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.*;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by JK on 7/9/2017.
@@ -22,6 +27,8 @@ public class LoginPage extends Driver{
 
     private WebDriver driver = Driver.getInstance();
     private WebDriverWait wait = new WebDriverWait(driver, 10);
+
+
 
 /*    @FindBy
     WebElement usernameBox = FindPageElements.findElement("user.name");
@@ -40,6 +47,11 @@ public class LoginPage extends Driver{
             ManageWebElements.clickElement(dataBaseList);
         WebElement loginButton = findLoginButton();
             ManageWebElements.clickElement(loginButton);
+        waitForPageLoad();
+
+        /**WaitForPageToLoad WFP = new WaitForPageToLoad();
+        WFP.setTimeToWait(1000);*/
+
     }
 
     private WebElement findUserNameBox(){
@@ -56,5 +68,32 @@ public class LoginPage extends Driver{
     }
     private WebElement findLoginButton(){
         return element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login.button")));
+    }
+
+
+
+    public void waitForPageLoad( ) {
+
+        JavascriptExecutor js =(JavascriptExecutor)driver;
+        Object result = js.executeScript("return document['readyState'] ? 'complete' == document.readyState : true");
+
+        while(!((result != null) && (result instanceof Boolean) && (Boolean) result)){
+            System.out.println(result.toString());
+            driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+
+        }
+
+        System.out.println(result.toString());
+
+        /**Object str = js.executeScript("return document.readyState;");
+        while (!str.equals("complete")) {
+            System.out.println(str.toString());
+            driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+
+        }*/
+
+       // System.out.println(str.toString());
+
+
     }
 }
