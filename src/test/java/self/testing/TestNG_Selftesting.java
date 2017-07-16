@@ -13,7 +13,7 @@ public class TestNG_Selftesting {
     public static void startBrowserTest(){
 
         Driver.getInstance();
-        Driver.getBaseUrl();
+       // Driver.getBaseUrl();
         Driver.closeBrowser();
 
     }

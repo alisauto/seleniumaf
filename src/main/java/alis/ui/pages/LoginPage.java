@@ -31,15 +31,15 @@ public class LoginPage extends Driver{
     private WebDriver driver = Driver.getInstance();
     private WebDriverWait wait = new WebDriverWait(driver, 10);
 
-
-
 /*    @FindBy
     WebElement usernameBox = FindPageElements.findElement("user.name");
     WebElement passwordBox = FindPageElements.findElement("user.password");
     WebElement dataBaseFilter = FindPageElements.findElement("v-filterselect-input");
     WebElement loginButton = FindPageElements.findElement("login.button");*/
 
-    public void login(String username, String password, String dataBase) throws InterruptedException {
+    public void login(String URL , String username, String password, String dataBase) throws InterruptedException {
+        Driver.getBaseUrl(URL);
+
         WebElement usernameBox = findUserNameBox();
             ManageWebElements.setElementValue(usernameBox, username);
         WebElement passwordBox = findPasswordNameBox();

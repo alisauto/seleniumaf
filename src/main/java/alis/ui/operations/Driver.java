@@ -59,8 +59,9 @@ public class Driver {
         return driver;
     }
 
-    public static void getBaseUrl(){
-        driver.get(props.getProperty("baseUrl"));
+    public static void getBaseUrl(String sURL){
+        //driver.get(props.getProperty("baseUrl"));
+        driver.get(sURL);
     }
 
     public static void closeBrowser(){

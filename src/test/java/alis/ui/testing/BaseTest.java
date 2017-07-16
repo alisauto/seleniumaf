@@ -10,7 +10,7 @@ public class BaseTest {
     @BeforeSuite
     public static void setup(){
         Driver.getInstance();
-        Driver.getBaseUrl();
+        //Driver.getBaseUrl();
     }
 
     @AfterSuite

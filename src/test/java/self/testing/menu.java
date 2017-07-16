@@ -1,18 +1,10 @@
 package self.testing;
 
-import java.util.List;
-import java.util.regex.Pattern;
-import java.util.concurrent.TimeUnit;
-import alis.ui.operations.Driver;
 import alis.ui.operations.Menus;
 import alis.ui.pages.LoginPage;
-import alis.ui.testing.Login;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import static org.testng.Assert.*;
 import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class menu extends Login {
     private WebDriver driver;
