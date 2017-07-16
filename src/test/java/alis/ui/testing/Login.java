@@ -11,7 +11,7 @@ public class Login extends BaseTest{
     public static void loginToAlis() throws InterruptedException {
         //test
         LoginPage page = new LoginPage();
-        page.login("Clerk", "a", "fnb_maint_test21");
+        page.login("Clerk", "a", "tfl_6631_auto");
         page.waitForPageLoad();
         try {
           Thread.sleep(100);
