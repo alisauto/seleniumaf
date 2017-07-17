@@ -14,7 +14,7 @@ public class Amid {
 
     public static void main(String args[]) throws Exception {
 
-       String path =  projectDir + "\\testData\\testData.xlsx" ;
+       String path =  projectDir + "\\testData\\LoginData.xlsx" ;
        String sheetName = "LogIn";
 
         ExcelUtils.setExcelFile(path,sheetName);

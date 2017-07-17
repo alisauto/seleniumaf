@@ -11,7 +11,7 @@ public class Login extends BaseTest {
     @Test
     public void loginToAlis() throws Exception {
         //test
-        String path =  projectDir + "\\testData\\testData.xlsx" ;
+        String path =  projectDir + "\\testData\\LoginData.xlsx" ;
         String sheetName = "LogIn";
         String sTestCaseName;
         int iTestCaseRow;
@@ -30,6 +30,7 @@ public class Login extends BaseTest {
         String userName = excelObject.getCellData(iTestCaseRow,"UserName");
         String password= excelObject.getCellData(iTestCaseRow,"Password");
         String dataBase= excelObject.getCellData(iTestCaseRow,"DataBase");
+
         /**String URL = excelObject.getCellData(iTestCaseRow,2);
          String userName = excelObject.getCellData(iTestCaseRow,3);
          String password= excelObject.getCellData(iTestCaseRow,4);

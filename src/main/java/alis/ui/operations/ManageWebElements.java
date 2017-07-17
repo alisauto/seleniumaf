@@ -17,6 +17,8 @@ public class ManageWebElements extends Driver{
     public static JavascriptExecutor js =(JavascriptExecutor)driver;
     private static WebDriverWait wait = new WebDriverWait(driver, 10);
 
+    private static boolean bDoHighlight=false;
+
     static LoginPage page = new LoginPage();
 
     public static void setElementValue(WebElement element, String value) throws InterruptedException {
@@ -32,9 +34,6 @@ public class ManageWebElements extends Driver{
     public static void setElementValue(String identify, String value) throws InterruptedException {
 
         WebElement element = FindPageElements.findElement(identify);
-
-        //String str = element.getTagName();
-
         if(element != null) {
             if (element.getTagName().equals("input")) {
                 element.clear();
@@ -45,19 +44,10 @@ public class ManageWebElements extends Driver{
     }
 
     public static void setComboValue(String identify, String value) throws InterruptedException {
-
-        WebElement element = FindPageElements.findElement(identify);
-        if(element != null) {
-
-            if (element.getTagName().equals("input")) {
-                element.clear();
-                DoHighlight(element);
-                element.sendKeys(value);
-                page.waitForPageLoad();
-            }
-        }
-        WebElement listelement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("VAADIN_COMBOBOX_OPTIONLIST")));
-        ManageWebElements.clickElement(listelement);
+            setElementValue(identify,value);
+            WebElement listelement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("VAADIN_COMBOBOX_OPTIONLIST")));
+            if(listelement != null)
+                ManageWebElements.clickElement(listelement);
     }
 
     public static void clickElement(WebElement element) throws InterruptedException {
@@ -76,11 +66,12 @@ public class ManageWebElements extends Driver{
     }
 
     public static void DoHighlight(WebElement element) throws InterruptedException{
-
-        for(int i=0;i<5;i++){
-            js.executeScript("arguments[0].style.border='3px solid red'", element);
-            Thread.sleep(200);
-            js.executeScript("arguments[0].style.border='0px'", element);
+        if(bDoHighlight) {
+            for (int i = 0; i < 5; i++) {
+                js.executeScript("arguments[0].style.border='3px solid red'", element);
+                Thread.sleep(200);
+                js.executeScript("arguments[0].style.border='0px'", element);
+            }
         }
 
     }

@@ -1,12 +1,9 @@
 package self.testing;
 
-import alis.ui.operations.Driver;
-import alis.ui.operations.FindPageElements;
-import alis.ui.operations.ManageWebElements;
+import alis.ui.operations.*;
 import alis.ui.testing.BaseTest;
 import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.openqa.selenium.WebDriver;
-import alis.ui.operations.Menus;
 import alis.ui.pages.LoginPage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,13 +13,22 @@ import org.openqa.selenium.*;
 
 import java.util.Random;
 
-public class Client{
+public class Client {
     //private WebDriver driver;
     private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
     private static WebDriver driver = Driver.getInstance();
     private WebDriverWait wait = new WebDriverWait(driver, 10);
+    private static String projectDir = System.getProperty("user.dir");
+
+    String path =  projectDir + "\\testData\\LoginData.xlsx" ;
+    String sheetName = "LogIn";
+    String sTestCaseName;
+    int iTestCaseRow;
+
+
+
 
     @Test
     public void login () throws Exception{
@@ -33,9 +39,20 @@ public class Client{
     @Test
     public void testClient() throws Exception {
 
+/**
+        ExcelUtils excelObject = new ExcelUtils();
+        excelObject.setExcelFile(path,sheetName);
+        // sTestCaseName = excelObject.getTestCaseName(this.toString());
+        iTestCaseRow = excelObject.getRowContains("LogIn Alis TFL",1);
+        //iTestCaseRow = excelObject.getRowContains("LogIn Alis AF",1);
+        Object[][] testDataArray = excelObject.getTableArray(path,sheetName,iTestCaseRow);
+        String URL = excelObject.getCellData(iTestCaseRow,"URL");*/
+
+
         LoginPage page = new LoginPage();
         Menus menu = new Menus();
         menu.navigateTomenu("client,new person");
+        //menu.navigateTomenu("New,person");
         page.waitForPageLoad();
         Thread.sleep(5000);
 
