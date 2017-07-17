@@ -30,7 +30,6 @@ public class ManageWebElements extends Driver{
         }
     }
 
-
     public static void setElementValue(String identify, String value) throws InterruptedException {
 
         WebElement element = FindPageElements.findElement(identify);

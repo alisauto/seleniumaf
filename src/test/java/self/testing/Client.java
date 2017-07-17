@@ -22,13 +22,10 @@ public class Client {
     private WebDriverWait wait = new WebDriverWait(driver, 10);
     private static String projectDir = System.getProperty("user.dir");
 
-    String path =  projectDir + "\\testData\\LoginData.xlsx" ;
-    String sheetName = "LogIn";
+    String path =  projectDir + "\\testData\\clientData.xlsx" ;
+    String sheetName = "Client_Details";
     String sTestCaseName;
     int iTestCaseRow;
-
-
-
 
     @Test
     public void login () throws Exception{
@@ -39,42 +36,48 @@ public class Client {
     @Test
     public void testClient() throws Exception {
 
-/**
-        ExcelUtils excelObject = new ExcelUtils();
-        excelObject.setExcelFile(path,sheetName);
+
+
+        ExcelUtils.setExcelFile(path,sheetName);
         // sTestCaseName = excelObject.getTestCaseName(this.toString());
-        iTestCaseRow = excelObject.getRowContains("LogIn Alis TFL",1);
-        //iTestCaseRow = excelObject.getRowContains("LogIn Alis AF",1);
-        Object[][] testDataArray = excelObject.getTableArray(path,sheetName,iTestCaseRow);
-        String URL = excelObject.getCellData(iTestCaseRow,"URL");*/
+        iTestCaseRow = ExcelUtils.getRowContains("Client TFL",1);
+
+        Object[][] testDataArray = ExcelUtils.getTableArray(path,sheetName,iTestCaseRow);
+        String URL = ExcelUtils.getCellData(iTestCaseRow,"URL");
 
 
         LoginPage page = new LoginPage();
         Menus menu = new Menus();
-        menu.navigateTomenu("client,new person");
-        //menu.navigateTomenu("New,person");
+        //menu.navigateTomenu("client,new person");
+        String Navigate = ExcelUtils.getCellData(iTestCaseRow,"Navigate");
+
+        menu.navigateTomenu(ExcelUtils.getCellData(iTestCaseRow,"Navigate"));
         page.waitForPageLoad();
         Thread.sleep(5000);
 
+
         Random rn = new Random();
         int rand = rn.nextInt(9999)+1;
-        ManageWebElements.setElementValue("ClientDetails/FirstName","John"+Integer.toString(rand));
-        ManageWebElements.setElementValue("ClientDetails/MiddleName","Firstinsured");
-        ManageWebElements.setElementValue("ClientDetails/Surname","Fifty");
-        ManageWebElements.setComboValue("ClientDetails/Gender","male");
-        ManageWebElements.setElementValue("ClientDetails/DateOfBirth","01011980");
+        ManageWebElements.setElementValue("ClientDetails/FirstName",ExcelUtils.getCellData(iTestCaseRow,"First Name"));
+        ManageWebElements.setElementValue("ClientDetails/MiddleName",ExcelUtils.getCellData(iTestCaseRow,"MiddleName"));
+        ManageWebElements.setElementValue("ClientDetails/Surname",ExcelUtils.getCellData(iTestCaseRow,"Surname"));
+        ManageWebElements.setComboValue("ClientDetails/Gender",ExcelUtils.getCellData(iTestCaseRow,"Gender"));
+        ManageWebElements.setElementValue("ClientDetails/DateOfBirth",ExcelUtils.getCellData(iTestCaseRow,"Date Of Birth"));
         ManageWebElements.clickElement("gwt-uid-1");
 
         // Address Table
         ManageWebElements.clickElement("address/addAddress");
-        ManageWebElements.setComboValue("address/addressTypeValue","Physical");
-        ManageWebElements.setElementValue("address/AddressLine1","Main Street");
-        ManageWebElements.setElementValue("address/City","Nashville");
-        ManageWebElements.setComboValue("address/states","TN Tennessee");
-        ManageWebElements.setElementValue("address/freeText","12345");
+        ManageWebElements.setComboValue("address/addressTypeValue",ExcelUtils.getCellData(iTestCaseRow,"Address Type"));
+        ManageWebElements.setElementValue("address/AddressLine1",ExcelUtils.getCellData(iTestCaseRow,"Address Line 1"));
+        ManageWebElements.setElementValue("address/City",ExcelUtils.getCellData(iTestCaseRow,"City"));
+        ManageWebElements.setComboValue("address/states",ExcelUtils.getCellData(iTestCaseRow,"State"));
+        ManageWebElements.setElementValue("address/freeText",ExcelUtils.getCellData(iTestCaseRow,"Zip Code"));
 
-        // Address Table
+        // Address Payment
         ManageWebElements.clickElement("PaymentArrangementGrid/addedArr");
+        ManageWebElements.setComboValue("PaymentArrangementGrid/companies",ExcelUtils.getCellData(iTestCaseRow,"Company"));
+        ManageWebElements.setComboValue("PaymentArrangementGrid/method",ExcelUtils.getCellData(iTestCaseRow,"Method"));
+        ManageWebElements.setComboValue("PaymentArrangementGrid/frequency",ExcelUtils.getCellData(iTestCaseRow,"Frequency"));
 
         //Save
         ManageWebElements.clickElement("ClientDetails/buttonsave");

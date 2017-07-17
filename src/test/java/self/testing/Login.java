@@ -16,20 +16,17 @@ public class Login extends BaseTest {
         String sTestCaseName;
         int iTestCaseRow;
 
-        ExcelUtils excelObject = new ExcelUtils();
-        excelObject.setExcelFile(path,sheetName);
 
+        ExcelUtils.setExcelFile(path,sheetName);
        // sTestCaseName = excelObject.getTestCaseName(this.toString());
-
-        iTestCaseRow = excelObject.getRowContains("LogIn Alis TFL",1);
+        iTestCaseRow = ExcelUtils.getRowContains("LogIn Alis TFL",1);
         //iTestCaseRow = excelObject.getRowContains("LogIn Alis AF",1);
+        Object[][] testDataArray = ExcelUtils.getTableArray(path,sheetName,iTestCaseRow);
 
-        Object[][] testDataArray = excelObject.getTableArray(path,sheetName,iTestCaseRow);
-
-        String URL = excelObject.getCellData(iTestCaseRow,"URL");
-        String userName = excelObject.getCellData(iTestCaseRow,"UserName");
-        String password= excelObject.getCellData(iTestCaseRow,"Password");
-        String dataBase= excelObject.getCellData(iTestCaseRow,"DataBase");
+        String URL = ExcelUtils.getCellData(iTestCaseRow,"URL");
+        String userName = ExcelUtils.getCellData(iTestCaseRow,"UserName");
+        String password= ExcelUtils.getCellData(iTestCaseRow,"Password");
+        String dataBase= ExcelUtils.getCellData(iTestCaseRow,"DataBase");
 
         /**String URL = excelObject.getCellData(iTestCaseRow,2);
          String userName = excelObject.getCellData(iTestCaseRow,3);
