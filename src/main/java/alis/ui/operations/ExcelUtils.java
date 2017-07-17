@@ -59,7 +59,7 @@ public class ExcelUtils {
             for (int j=startCol;j<=totalCols;j++, cj++)
             {
                 tabArray[ci][cj]=getCellData(iTestCaseRow,j);
-                System.out.println(tabArray[ci][cj]);
+                //System.out.println(tabArray[ci][cj]);
             }
         }
         catch (FileNotFoundException e)

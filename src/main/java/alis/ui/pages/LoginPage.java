@@ -40,16 +40,11 @@ public class LoginPage extends Driver{
     public void login(String URL , String username, String password, String dataBase) throws InterruptedException {
         Driver.getBaseUrl(URL);
 
-        WebElement usernameBox = findUserNameBox();
-            ManageWebElements.setElementValue(usernameBox, username);
-        WebElement passwordBox = findPasswordNameBox();
-            ManageWebElements.setElementValue(passwordBox, password);
-        WebElement dataBaseFilter = findDataBaseFilter();
-            ManageWebElements.setElementValue(dataBaseFilter, dataBase);
-        WebElement dataBaseList = findDataBaseList();
-            ManageWebElements.clickElement(dataBaseList);
-        WebElement loginButton = findLoginButton();
-            ManageWebElements.clickElement(loginButton);
+        ManageWebElements.setElementValue("user.name",username);
+        ManageWebElements.setElementValue("user.password",password);
+        ManageWebElements.setComboValue("login-combo",dataBase);
+        waitForPageLoad();
+        ManageWebElements.clickElement("login.button");
         waitForPageLoad();
 
         /**WaitForPageToLoad WFP = new WaitForPageToLoad();

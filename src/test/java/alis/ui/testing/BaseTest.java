@@ -15,7 +15,7 @@ public class BaseTest {
 
     @AfterSuite
     public static void cleanup(){
-        Driver.closeBrowser();
+        //Driver.closeBrowser();
     }
 
 }
