@@ -1,0 +1,7 @@
+<suite name="Regression TestSuite">
+    <test name="Application Test">
+        <classes>
+            <class name="self.testing.Client"></class>
+        </classes>
+    </test>
+</suite>
