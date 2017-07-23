@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -15,11 +17,11 @@ public class Driver {
     //private static Driver instance = null;
     private static WebDriver driver = null;
     private static String projectDir = System.getProperty("user.dir");
-    private static Properties props = loadProperties();
+    public static Properties props = loadProperties();
 
     protected Driver(){}
 
-    private static Properties loadProperties(){
+    public static Properties loadProperties(){
         Properties props = new Properties();
         String propertiesFile = projectDir + "\\src\\main\\config.properties";
         try{

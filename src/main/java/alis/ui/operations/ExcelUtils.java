@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
-
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -76,6 +75,41 @@ public class ExcelUtils {
 
         return(tabArray);
     }
+
+
+    public static String[] getInputDataHeader(String FilePath, String SheetName) throws Exception{
+
+        String[]headerArray = null;
+
+        try{
+            FileInputStream ExcelFile = new FileInputStream(FilePath);
+            // Access the required test data sheet
+            ExcelWBook = new XSSFWorkbook(ExcelFile);
+            ExcelWSheet = ExcelWBook.getSheet(SheetName);
+
+            //Get Number of Column
+            //int noOfColumns = ExcelWSheet.getRow(0).getPhysicalNumberOfCells();
+            int noOfColumns = ExcelWSheet.getRow(0).getLastCellNum();
+            headerArray = new String[noOfColumns];
+            for (int icol=0;icol<noOfColumns;icol++)
+                headerArray[icol] =getCellData(0,icol);
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("Could not read the Excel sheet");
+            e.printStackTrace();
+        }
+
+        catch (IOException e)
+        {
+            System.out.println("Could not read the Excel sheet");
+            e.printStackTrace();
+        }
+        return (headerArray);
+    }
+
+
+
 
     //This method is to read the test data from the Excel cell, in this we are passing parameters as Row num and Col num
     public static String getCellData(int RowNum, int ColNum) throws Exception{

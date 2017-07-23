@@ -17,7 +17,16 @@ public class Amid {
        String path =  projectDir + "\\testData\\LoginData.xlsx" ;
        String sheetName = "LogIn";
 
+
+        String path1 =  projectDir + "\\testData\\LoginData.xlsx" ;
+        String sheetName1 = "Client_Details";
+
         ExcelUtils.setExcelFile(path,sheetName);
+
+        String[]login = ExcelUtils.getInputDataHeader(path,sheetName);
+        String[]client = ExcelUtils.getInputDataHeader(path1,sheetName1);
+
+
        // sTestCaseName = ExcelUtils.getTestCaseName(this.toString());
         /**int col = ExcelUtils.getRowByHeader("UserName");
         int col1 = ExcelUtils.getRowByHeader("usrName");*/
