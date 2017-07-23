@@ -17,7 +17,7 @@ public class Driver {
     //private static Driver instance = null;
     private static WebDriver driver = null;
     private static String projectDir = System.getProperty("user.dir");
-    public static Properties props = loadProperties();
+    private static Properties props = loadProperties();
 
     protected Driver(){}
 

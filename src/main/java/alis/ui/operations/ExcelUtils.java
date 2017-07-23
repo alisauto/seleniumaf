@@ -115,8 +115,7 @@ public class ExcelUtils {
     public static String getCellData(int RowNum, int ColNum) throws Exception{
         try{
             Cell = ExcelWSheet.getRow(RowNum).getCell(ColNum);
-            String CellData = Cell.getStringCellValue();
-            return CellData;
+            return Cell.getStringCellValue();
 
         }catch (Exception e){
             return"";
@@ -191,8 +190,7 @@ public class ExcelUtils {
     public static int getRowUsed() throws Exception {
 
         try{
-            int RowCount = ExcelWSheet.getLastRowNum();
-            return RowCount;
+            return ExcelWSheet.getLastRowNum();
         }catch (Exception e){
             System.out.println(e.getMessage());
             throw (e);
